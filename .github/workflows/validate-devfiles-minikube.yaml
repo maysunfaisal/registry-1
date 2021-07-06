@@ -10,9 +10,9 @@ name: Validate Devfiles
 
 on:
   push:
-    branches: [ main ]
+    branches: [ 244-1 ]
   pull_request:
-    branches: [ main ]
+    branches: [ 244-1 ]
 
 jobs:
 
@@ -37,3 +37,12 @@ jobs:
         odo: "latest"
     - name: Validate the devfile stacks
       run: tests/test.sh odo
+  check_architectures:
+    name: Check Architectures
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Validate the devfile stacks
+      run: tests/check_architectures.sh
