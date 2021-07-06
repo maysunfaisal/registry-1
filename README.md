@@ -19,7 +19,7 @@ If you are a stack owner and need to request an urgent refresh of https://regist
 ### Prerequisites
 
 - Golang 1.13.x or later
-- Docker 17.06 or later
+- Docker 17.06 or later XYZ
 - Git
 
 ### Build
