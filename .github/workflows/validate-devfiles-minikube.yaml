@@ -10,33 +10,33 @@ name: Validate Devfiles
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ 244-3 ]
+  pull_request_target:
+    branches: [ 244-3 ]
 
 jobs:
 
-  test_minikube:
-    name: Test Minikube
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Setup Minikube
-      uses: manusa/actions-setup-minikube@v2.4.2
-      with:
-        minikube version: 'v1.21.0'
-        kubernetes version: 'v1.21.0'
-        driver: 'docker'
-        github token: ${{ secrets.GITHUB_TOKEN }}
-        start args: '--addons=ingress'
-    - name: Install CLI tools
-      uses: redhat-actions/openshift-tools-installer@v1
-      with:
-        # Installs the latest release of odo
-        odo: "latest"
-    - name: Validate the devfile stacks
-      run: tests/test.sh odo
+  # test_minikube:
+  #   name: Test Minikube
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v1
+  #   - name: Setup Minikube
+  #     uses: manusa/actions-setup-minikube@v2.4.2
+  #     with:
+  #       minikube version: 'v1.21.0'
+  #       kubernetes version: 'v1.21.0'
+  #       driver: 'docker'
+  #       github token: ${{ secrets.GITHUB_TOKEN }}
+  #       start args: '--addons=ingress'
+  #   - name: Install CLI tools
+  #     uses: redhat-actions/openshift-tools-installer@v1
+  #     with:
+  #       # Installs the latest release of odo
+  #       odo: "latest"
+  #   - name: Validate the devfile stacks
+  #     run: tests/test.sh odo
   check_architectures:
     name: Check Stack and Sample Architectures
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
           echo $body
           echo "::set-output name=body::$body"
     - name: Find Comment in PR
-      if: ${{ github.event_name == 'pull_request' && steps.save.outputs.body != '' }}
+      if: ${{ github.event_name == 'pull_request_target' && steps.save.outputs.body != '' }}
       uses: peter-evans/find-comment@v1
       id: find
       with:
@@ -73,7 +73,7 @@ jobs:
         comment-author: 'github-actions[bot]'
         body-includes: Please check if your stack/sample devfile has architectures mentioned.
     - name: Create or update comment in PR
-      if: ${{ github.event_name == 'pull_request' && steps.save.outputs.body != '' }}
+      if: ${{ github.event_name == 'pull_request_target' && steps.save.outputs.body != '' }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         comment-id: ${{ steps.find.outputs.comment-id }}
