@@ -72,10 +72,11 @@ jobs:
         issue-number: ${{ github.event.pull_request.number }}
         comment-author: 'github-actions[bot]'
         body-includes: Please check if your stack/sample devfile has architectures.
-    - name: Create comment for PRs
-      if: ${{ github.event_name == 'pull_request' && steps.find.outputs.comment-id == '' }}
+    - name: Create or update comment in PR
+      if: ${{ github.event_name == 'pull_request' }}
       uses: peter-evans/create-or-update-comment@v1
       with:
+        comment-id: ${{ steps.find.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
           This comment was written by the github action!
@@ -83,3 +84,4 @@ jobs:
           It is good practice to write the architectures supported by the stack/sample devfile.
 
           ${{ steps.save.outputs.body }}
+        edit-mode: replace
