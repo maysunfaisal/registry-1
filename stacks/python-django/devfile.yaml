@@ -7,6 +7,7 @@ metadata:
   tags: ["Python", "pip", "Django"]
   projectType: "django"
   language: "python"
+  architectures: ["amd64"]
 starterProjects:
   - name: django-example
     git:
