@@ -78,8 +78,9 @@ jobs:
       with:
         comment-id: ${{ steps.find.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
+        # WARNING: When updating the body below, remember to make the corresponding update on the Find Comment in PR step
         body: |
-          This comment was written by the github action! TEST
+          This comment was written by the github action!
           Please check if your stack/sample devfile has architectures.
           It is good practice to write the architectures supported by the stack/sample devfile.
 
