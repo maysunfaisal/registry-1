@@ -3,7 +3,7 @@ Devfile registry - storing contents of the public community, OCI-based, devfile 
 
 The public registry is updated weekly, by 12pm EST Wednesdays, with any updated stacks in this repository.
 
-## Registry Updates
+## Registry Updates test new event
 
 The staging devfile registry, https://registry.stage.devfile.io is refreshed upon each commit to main in this repository. Production, https://registry.devfile.io, promoted manually and as mentioned above, is done each Wednesday, as needed.
 
