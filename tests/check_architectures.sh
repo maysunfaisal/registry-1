@@ -49,8 +49,9 @@ if [ -z $YQ_PATH ]; then
 fi
 
 checkStacks
-checkSamples
-
+if [ -f $EXTRA_DEVFILES_FILE ]; then
+    checkSamples
+fi
 
 if [[ ! -z "$missingStackDevfileArch" || ! -z "$missingSampleArch" ]]; then
     exit 1
