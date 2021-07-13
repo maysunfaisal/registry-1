@@ -1,4 +1,4 @@
-# registry
+# registry test3
 Devfile registry - storing contents of the public community, OCI-based, devfile registry hosted at https://registry.devfile.io.
 
 The public registry is updated weekly, by 12pm EST Wednesdays, with any updated stacks in this repository.
