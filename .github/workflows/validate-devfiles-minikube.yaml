@@ -11,7 +11,7 @@ name: Validate Devfiles
 on:
   push:
     branches: [ 244-3 ]
-  pull_request:
+  pull_request_target:
     branches: [ 244-3 ]
 
 jobs:
