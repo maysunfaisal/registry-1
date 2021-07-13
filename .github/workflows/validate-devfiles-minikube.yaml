@@ -50,15 +50,13 @@ jobs:
         github_pat: ${{ secrets.GITHUB_TOKEN }}
         # Installs the latest release of yq
         yq: "latest"
-    # - name: Check stacks and samples
-    #   continue-on-error: true
-    #   run: tests/check_architectures.sh yq
     - name: Check stacks and samples
       continue-on-error: true
+      # Redirect test output to a file because github steps dont exec commands
+      # following an error command in multi-line commands for steps[*].run
       run: tests/check_architectures.sh yq >> output.txt
     - name: Save test output
       id: save
-      continue-on-error: true
       run: |
           body=$(cat output.txt)
           body="${body//'%'/'%25'}"
@@ -66,9 +64,8 @@ jobs:
           body="${body//$'\r'/'%0D'}" 
           echo $body
           echo "::set-output name=body::$body"
-    - name: Check test output with magic
-      run: echo "${{ steps.save.outputs.body }}"
-    - name: Create comment
+    - name: Create comment for PRs
+      if: ${{ github.event_name == 'pull_request' }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         issue-number: ${{ github.event.pull_request.number }}
