@@ -41,7 +41,7 @@ jobs:
         echo ${{ github.event.number }} > ./pr/number
     - name: Check stacks and samples ouput
       continue-on-error: true
-      run: tests/check_architectures.sh "${{ env.GIT_DIFF }}" yq > ./pr/output
+      run: tests/check_architectures.sh "${{ env.GIT_DIFF }}" yq >> ./pr/output
     - uses: actions/upload-artifact@v2
       with:
         name: pr
