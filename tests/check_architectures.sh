@@ -8,7 +8,11 @@ checkStacks() {
     for STACK_DIR in $(find $STACKS_DIR -maxdepth 1 -type d ! -path $STACKS_DIR); do
         STACK_NAME="$(basename $STACK_DIR)"
 
+        echo MAYSUNNNNNNNNN STACK_NAME is $STACK_NAME
+        echo MAYSUNNNNNNNNN STACK is $STACK
+
         if [[ $STACK_NAME == $STACK ]]; then
+            echo MAYSUNNNNNNNNN matched MAYSUNNNNNNNNN
             DEVFILE_PATH=$STACK_DIR/devfile.yaml
     
             DEVFILE_ARCHITECTURES=$(cat $DEVFILE_PATH | grep architectures)
@@ -66,6 +70,7 @@ done
 
 if [[ ! -z "$missingStackDevfileArch" || ! -z "$missingSampleArch" ]]; then
     if [ ! -z "$missingStackDevfileArch" ]; then
+        echo MAYSUNNNNNNNNN there are some stacks missing arch
         missingStackDevfileArch=$(echo $missingStackDevfileArch | sed s'/,$//')
         echo stacks with missing architectures: $missingStackDevfileArch
     fi
