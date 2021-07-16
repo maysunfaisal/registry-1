@@ -48,10 +48,13 @@ FILE_DIFF=$1
 for file in $FILE_DIFF
 do
     file="${file//\'}"
+    echo processing $file
     if [ $file == "extraDevfileEntries.yaml" ]; then
+        echo checking samples
         checkSamples
     elif [[ $file == stacks/*/devfile.yaml ]]; then
         STACK_TEMP="$(echo $file | cut -d'/' -f2)"
+        echo checking stack $STACK_TEMP
         checkStacks $STACK_TEMP
     fi
 done
