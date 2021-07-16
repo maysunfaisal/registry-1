@@ -19,13 +19,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    # - name: get PR diff
-    #   run: |
-    #     git remote -v
-    #     git fetch origin master
-    #     git diff origin/master..HEAD --name-only > mydiff
-    #     echo "mydiff = "
-    #     cat mydiff
+    - name: Install yq command
+      uses: redhat-actions/openshift-tools-installer@v1
+      with:
+        source: "github"
+        github_pat: ${{ secrets.GITHUB_TOKEN }}
+        # Installs the latest release of yq
+        yq: "latest"
     - name: test action out
       id: mf
       uses: technote-space/get-diff-action@v4
@@ -33,7 +33,6 @@ jobs:
         PATTERNS: |
           +(stacks)/**/devfile.yaml
           extraDevfileEntries.yaml
-        # FILES: devfile.yaml
     - name: print diff with env
       run: echo GIT_DIFF ${{ env.GIT_DIFF }}
     - name: Save PR number
