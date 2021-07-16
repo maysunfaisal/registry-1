@@ -20,6 +20,8 @@ checkStacks() {
             if [[ -z $DEVFILE_ARCHITECTURES ]]; then
                 missingStackDevfileArch="$missingStackDevfileArch$STACK_NAME, "
             fi
+
+            echo missingStackDevfileArch INSIDE is $missingStackDevfileArch
         fi
     done
 }
