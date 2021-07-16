@@ -42,6 +42,9 @@ jobs:
     - name: Check stacks and samples ouput
       continue-on-error: true
       run: tests/check_architectures.sh "${{ env.GIT_DIFF }}" yq >> ./pr/output
+    - name: dummy
+      continue-on-error: true
+      run: tests/check_architectures.sh "${{ env.GIT_DIFF }}" yq
     - uses: actions/upload-artifact@v2
       with:
         name: pr
