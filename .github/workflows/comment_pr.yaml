@@ -15,8 +15,8 @@ on:
   workflow_run:
     workflows: ["Check Architectures"]
     branches: [ 244-new-1 ]
-    types:
-      - completed
+    # types:
+    #   - completed
 
 jobs:
   comment:
