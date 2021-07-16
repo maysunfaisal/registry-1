@@ -9,8 +9,6 @@
 name: Check Architectures
 
 on:
-  push:
-    branches: [ 244-new-1 ]
   pull_request:
     branches: [ 244-new-1 ]
 
@@ -32,10 +30,11 @@ jobs:
       id: mf
       uses: technote-space/get-diff-action@v4
       with:
-        # PATTERNS: |
-        #   +(stacks)/**/devfile.yaml
-        FILES: devfile.yaml
+        PATTERNS: |
+          +(stacks)/**/devfile.yaml
+          extraDevfileEntries.yaml
+        # FILES: devfile.yaml
     - name: show with env
-      run: echo ${{ env.GIT_DIFF }}
+      run: echo GIT_DIFF ${{ env.GIT_DIFF }}, GIT_DIFF_FILTERED ${{ env.GIT_DIFF_FILTERED }}, MATCHED_FILES ${{ env.MATCHED_FILES }}
     - name: show with output
       run: echo ${{ steps.mf.outputs.diff }}
