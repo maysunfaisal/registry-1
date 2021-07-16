@@ -7,6 +7,7 @@ samples:
     tags: ["NodeJS", "Express"]
     projectType: nodejs
     language: nodejs
+    architectures: ["amd64"]
     git:
       remotes:
         origin: https://github.com/nodeshift-starters/devfile-sample.git
