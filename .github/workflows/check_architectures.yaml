@@ -34,7 +34,16 @@ jobs:
           +(stacks)/**/devfile.yaml
           extraDevfileEntries.yaml
         # FILES: devfile.yaml
-    - name: show with env
-      run: echo GIT_DIFF ${{ env.GIT_DIFF }}, GIT_DIFF_FILTERED ${{ env.GIT_DIFF_FILTERED }}, MATCHED_FILES ${{ env.MATCHED_FILES }}
-    - name: show with output
-      run: echo ${{ steps.mf.outputs.diff }}
+    - name: print diff with env
+      run: echo GIT_DIFF ${{ env.GIT_DIFF }}
+    - name: Save PR number
+      run: |
+        mkdir -p ./pr
+        echo ${{ github.event.number }} > ./pr/number
+    - name: Check stacks and samples ouput
+      continue-on-error: true
+      run: tests/check_architectures.sh "${{ env.GIT_DIFF }}" yq > ./pr/output
+    - uses: actions/upload-artifact@v2
+      with:
+        name: pr
+        path: pr/
