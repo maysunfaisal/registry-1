@@ -69,6 +69,9 @@ done
 # fi
 
 if [[ ! -z "$missingStackDevfileArch" || ! -z "$missingSampleArch" ]]; then
+
+    echo missingStackDevfileArch is $missingStackDevfileArch
+
     if [ ! -z "$missingStackDevfileArch" ]; then
         echo MAYSUNNNNNNNNN there are some stacks missing arch
         missingStackDevfileArch=$(echo $missingStackDevfileArch | sed s'/,$//')
