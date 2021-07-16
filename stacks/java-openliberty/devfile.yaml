@@ -19,8 +19,9 @@ metadata:
   name: java-openliberty
   version: 0.5.0
   displayName: "Open Liberty"
-  description: Java application stack using Open Liberty runtime
+  description: Java application wwstack using Open Liberty runtime
   tags: ["Java", "Maven"]
+  # architectures: ["amd64"]
   language: "java"
   projectType: "docker"
   alpha.build-dockerfile: "https://github.com/OpenLiberty/application-stack/releases/download/outer-loop-0.5.1/Dockerfile"
