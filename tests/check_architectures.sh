@@ -47,6 +47,7 @@ fi
 FILE_DIFF=$1
 for file in $FILE_DIFF
 do
+    file="${file//\'}"
     if [ $file == "extraDevfileEntries.yaml" ]; then
         checkSamples
     elif [[ $file == stacks/*/devfile.yaml ]]; then
