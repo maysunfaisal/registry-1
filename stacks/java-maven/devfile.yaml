@@ -3,7 +3,8 @@ metadata:
   name: java-maven
   version: 1.1.0
   displayName: Maven Java
-  description: Upstream Maven and OpenJDK 11 tess
+  description: Upstream Maven and OpenJDK 11
+  architectures: ["amd64"]
   tags: ["Java", "Maven"]
   projectType: "maven"
   language: "java"
