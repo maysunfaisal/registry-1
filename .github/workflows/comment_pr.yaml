@@ -14,15 +14,14 @@ name: Comment on Pull Request
 on:
   workflow_run:
     workflows: ["Check Architectures"]
+    branches: [ 244-new-1 ]
     types:
       - completed
 
 jobs:
   comment:
     runs-on: ubuntu-latest
-    if: >
-      ${{ github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 'Download artifact'
         uses: actions/github-script@v3.1.0
