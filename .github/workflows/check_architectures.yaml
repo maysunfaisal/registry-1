@@ -10,7 +10,7 @@ name: Check Architectures
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ 244-new-1 ]
 
 jobs:
   check_architectures:
