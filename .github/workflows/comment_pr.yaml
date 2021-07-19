@@ -12,13 +12,13 @@
 name: Comment on Pull Request
 
 on:
-  pull_request:
-    branches: [ 244-new-1 ]
-  # workflow_run:
-  #   workflows: ["Check Architectures"]
+  # pull_request:
   #   branches: [ 244-new-1 ]
-    # types:
-    #   - completed
+  workflow_run:
+    workflows: ["Check Architectures"]
+    branches: [ 244-new-1 ]
+    types:
+      - completed
 
 jobs:
   comment:
@@ -26,7 +26,7 @@ jobs:
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: hello
-        run: HELLO :D
+        run: echo "HELLO :D"
       # - name: 'Download artifact'
       #   uses: actions/github-script@v3.1.0
       #   with:
